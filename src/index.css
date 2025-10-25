@@ -1,0 +1,502 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-gray-200;
+  }
+
+  body {
+    @apply bg-white text-gray-900 font-sans;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* 中文字体优化 */
+  .font-chinese {
+    font-family: 'Noto Sans SC', 'Source Han Sans CN', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  }
+
+  /* 英文字体优化 */
+  .font-english {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
+
+@layer components {
+  /* 卡片组件样式 */
+  .card {
+    @apply bg-white rounded-xl shadow-lg border border-gray-200 p-6 transition-all duration-200;
+  }
+
+  .card:hover {
+    @apply shadow-xl;
+  }
+
+  /* 移动端卡片优化 */
+  @media (max-width: 768px) {
+    .card {
+      @apply p-4 rounded-lg shadow-md;
+    }
+  }
+
+  /* 按钮组件样式 */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-blue-800 text-white hover:bg-blue-700 focus:ring-blue-500;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-100 text-gray-900 hover:bg-gray-200 focus:ring-gray-500;
+  }
+
+  .btn-warning {
+    @apply bg-yellow-500 text-white hover:bg-yellow-600 focus:ring-yellow-400;
+  }
+
+  .btn-success {
+    @apply bg-green-500 text-white hover:bg-green-600 focus:ring-green-400;
+  }
+
+  .btn-danger {
+    @apply bg-red-500 text-white hover:bg-red-600 focus:ring-red-400;
+  }
+
+  /* 移动端按钮优化 */
+  @media (max-width: 768px) {
+    .btn {
+      @apply px-3 py-2 text-xs min-h-[36px];
+    }
+    
+    .btn-mobile-full {
+      @apply w-full;
+    }
+  }
+
+  /* 输入框样式 */
+  .input {
+    @apply w-full rounded-lg border border-gray-300 px-3 py-2 text-sm placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500;
+  }
+
+  /* 移动端输入框优化 */
+  @media (max-width: 768px) {
+    .input {
+      @apply text-base min-h-[44px]; /* 防止iOS缩放 */
+    }
+  }
+
+  /* 渐变背景 */
+  .gradient-bg {
+    @apply bg-gradient-to-br from-blue-800 via-blue-700 to-blue-600;
+  }
+
+  /* 页面容器 */
+  .page-container {
+    @apply min-h-screen bg-gray-50;
+  }
+
+  /* 内容容器 */
+  .content-container {
+    @apply container mx-auto px-4 py-8;
+  }
+
+  /* 移动端内容容器优化 */
+  @media (max-width: 768px) {
+    .content-container {
+      @apply px-3 py-4;
+    }
+  }
+
+  /* 导航栏样式 */
+  .navbar {
+    @apply bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50;
+  }
+
+  .navbar-mobile {
+    @apply fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-50;
+  }
+
+  /* 表格响应式 */
+  .table-responsive {
+    @apply overflow-x-auto;
+  }
+
+  @media (max-width: 768px) {
+    .table-responsive table {
+      @apply text-xs;
+    }
+    
+    .table-responsive th,
+    .table-responsive td {
+      @apply px-2 py-2;
+    }
+  }
+
+  /* 网格响应式 */
+  .grid-responsive {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  @media (max-width: 768px) {
+    .grid-responsive {
+      @apply gap-4;
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* 模态框样式 */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4;
+  }
+
+  .modal-content {
+    @apply bg-white rounded-lg shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto;
+  }
+
+  @media (max-width: 768px) {
+    .modal-content {
+      @apply max-w-full mx-2;
+    }
+  }
+
+  /* 侧边栏样式 */
+  .sidebar {
+    @apply fixed left-0 top-0 h-full bg-white shadow-lg transform transition-transform duration-300 z-40;
+  }
+
+  .sidebar-open {
+    @apply translate-x-0;
+  }
+
+  .sidebar-closed {
+    @apply -translate-x-full;
+  }
+
+  /* 触摸优化 */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+
+  /* 加载状态 */
+  .loading-spinner {
+    @apply animate-spin rounded-full border-2 border-gray-300 border-t-blue-600;
+  }
+
+  /* 进度条 */
+  .progress-bar {
+    @apply w-full bg-gray-200 rounded-full h-2 overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full bg-blue-600 transition-all duration-300 ease-out;
+  }
+
+  /* 标签样式 */
+  .tag {
+    @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+  }
+
+  .tag-primary {
+    @apply bg-blue-100 text-blue-800;
+  }
+
+  .tag-success {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .tag-warning {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+
+  .tag-danger {
+    @apply bg-red-100 text-red-800;
+  }
+
+  /* 状态指示器 */
+  .status-indicator {
+    @apply inline-flex items-center;
+  }
+
+  .status-dot {
+    @apply w-2 h-2 rounded-full mr-2;
+  }
+
+  .status-online {
+    @apply bg-green-500;
+  }
+
+  .status-offline {
+    @apply bg-gray-400;
+  }
+
+  .status-busy {
+    @apply bg-red-500;
+  }
+
+  /* 分割线 */
+  .divider {
+    @apply border-t border-gray-200 my-4;
+  }
+
+  /* 空状态 */
+  .empty-state {
+    @apply text-center py-12;
+  }
+
+  .empty-state-icon {
+    @apply w-16 h-16 text-gray-400 mx-auto mb-4;
+  }
+
+  /* 工具提示 */
+  .tooltip {
+    @apply absolute z-50 px-2 py-1 text-xs text-white bg-gray-900 rounded shadow-lg;
+  }
+}
+
+@layer utilities {
+  /* 文本渐变 */
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent;
+  }
+
+  /* 隐藏滚动条 */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 动画类 */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+
+  /* 移动端专用工具类 */
+  @media (max-width: 768px) {
+    .mobile-hidden {
+      @apply hidden;
+    }
+    
+    .mobile-full-width {
+      @apply w-full;
+    }
+    
+    .mobile-text-center {
+      @apply text-center;
+    }
+    
+    .mobile-px-2 {
+      @apply px-2;
+    }
+    
+    .mobile-py-2 {
+      @apply py-2;
+    }
+    
+    .mobile-text-sm {
+      @apply text-sm;
+    }
+    
+    .mobile-space-y-2 > * + * {
+      @apply mt-2;
+    }
+  }
+
+  /* 桌面端专用工具类 */
+  @media (min-width: 769px) {
+    .desktop-only {
+      @apply block;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .desktop-only {
+      @apply hidden;
+    }
+  }
+
+  /* 触摸设备优化 */
+  @media (hover: none) and (pointer: coarse) {
+    .hover-none {
+      @apply hover:bg-transparent hover:text-current;
+    }
+  }
+
+  /* 安全区域适配 */
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-area-left {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .safe-area-right {
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* 关键帧动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 移动端特定样式 */
+@media (max-width: 768px) {
+  /* 防止iOS Safari缩放 */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+
+  /* 移动端表格优化 */
+  .mobile-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  /* 移动端卡片堆叠 */
+  .mobile-stack > * {
+    margin-bottom: 1rem;
+  }
+
+  /* 移动端按钮组 */
+  .mobile-button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .mobile-button-group .btn {
+    width: 100%;
+  }
+}
+
+/* 高分辨率屏幕优化 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .high-dpi-border {
+    border-width: 0.5px;
+  }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+  .dark-mode-auto {
+    @apply bg-gray-900 text-white;
+  }
+  
+  .dark-mode-auto .card {
+    @apply bg-gray-800 border-gray-700;
+  }
+  
+  .dark-mode-auto .input {
+    @apply bg-gray-800 border-gray-600 text-white;
+  }
+}
+
+/* 减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
