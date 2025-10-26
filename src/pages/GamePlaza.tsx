@@ -69,8 +69,8 @@ const GamePlaza: React.FC = () => {
               </h1>
               
               <div className="flex items-center">
-              <OnlineCounter className="bg-white/80 backdrop-blur-sm px-4 py-2 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow" />
-            </div>}
+                <OnlineCounter className="bg-white/80 backdrop-blur-sm px-4 py-2 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow" />
+              </div>
             </div>
           </div>
         </div>
