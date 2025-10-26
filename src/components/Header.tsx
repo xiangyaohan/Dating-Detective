@@ -10,7 +10,8 @@ import {
   Settings,
   FileText,
   Plus,
-  Shield
+  Shield,
+  ExternalLink
 } from 'lucide-react';
 import { useAuthStore } from '../stores/authStore';
 import { showToast } from './Toast';
@@ -62,10 +63,10 @@ const Header: React.FC = () => {
             <Link to="/" className="flex items-center space-x-2">
               <Shield className="w-8 h-8 text-blue-600" />
               <span className="text-xl font-bold text-gray-900 font-chinese desktop-only">
-                真实背景调查系统
+                相亲对象背调AI
               </span>
               <span className="text-lg font-bold text-gray-900 font-chinese md:hidden">
-                背调系统
+                背调AI
               </span>
             </Link>
 
@@ -98,6 +99,16 @@ const Header: React.FC = () => {
                 <Bell className="w-5 h-5" />
                 <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
               </button>
+
+              {/* Game Plaza Link - Desktop Only */}
+              <Link
+                to="/game-plaza"
+                className="hidden md:flex items-center space-x-1 px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                title="前往游戏广场"
+              >
+                <ExternalLink className="w-4 h-4" />
+                <span className="text-sm font-medium">攻城略地</span>
+              </Link>
 
               {/* User Menu */}
               {isAuthenticated ? (
@@ -209,6 +220,16 @@ const Header: React.FC = () => {
                   通知
                   <span className="ml-auto w-2 h-2 bg-red-500 rounded-full"></span>
                 </button>
+
+                {/* Mobile Game Plaza Link */}
+                <Link
+                  to="/game-plaza"
+                  className="flex items-center w-full px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-200"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <ExternalLink className="w-5 h-5 mr-3" />
+                  攻城略地
+                </Link>
               </nav>
             </div>
           </div>

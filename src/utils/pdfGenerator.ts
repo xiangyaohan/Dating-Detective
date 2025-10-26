@@ -19,13 +19,16 @@ export interface ReportData {
     traits: Array<{ name: string; value: number; description: string }>;
     overallScore: number;
     summary: string;
+    comparison?: Array<{ category: string; user: number; average: number; ideal: number }>;
   };
   interestAnalysis: {
-    hobbies: Array<{ name: string; value: number; details: string[] }>;
+    hobbies: Array<{ name: string; value: number; details: string[]; color?: string }>;
     compatibilityScore: number;
+    trendData?: Array<{ name: string; value: number; trend: number }>;
   };
   lifestyleAnalysis: {
-    values: Array<{ name: string; score: number; status: string }>;
+    values: Array<{ name: string; score: number; status: string; trend?: string; trendValue?: number }>;
+    lifestyle?: Array<{ name: string; value: number }>;
   };
   matchingScore: {
     overall: number;

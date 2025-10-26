@@ -16,6 +16,7 @@ import Profile from './pages/Profile';
 import Privacy from './pages/Privacy';
 import DataSources from './pages/DataSources';
 import Compliance from './pages/Compliance';
+import GamePlaza from './pages/GamePlaza';
 import { ToastProvider } from './components/Toast';
 import { useAppStore } from './stores/appStore';
 
@@ -46,6 +47,7 @@ function App() {
               <Route path="/compliance" element={<Compliance />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/privacy" element={<Privacy />} />
+              <Route path="/game-plaza" element={<GamePlaza />} />
             </Routes>
           </Layout>
         </div>
