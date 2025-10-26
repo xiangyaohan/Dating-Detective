@@ -6,7 +6,7 @@ export const gamesData: Game[] = [
     id: 'battle-game',
     name: '攻城略地',
     description: '策略战争游戏，征服领土扩张版图，体验真实的战争策略',
-    url: 'https://traejyo6r3ez.vercel.app/',
+    url: 'https://traed6xt27cf.vercel.app',
     thumbnail: 'https://trae-api-sg.mchost.guru/api/ide/v1/text_to_image?prompt=strategy%20war%20game%20castle%20battle%20medieval%20fortress%20army%20conquest%20blue%20theme&image_size=landscape_4_3',
     category: 'featured',
     isRecommended: true,
