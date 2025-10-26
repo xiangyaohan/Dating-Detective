@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ArrowLeft, Gamepad2, Sparkles } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import GameCard from '../components/GameCard';
+import OnlineCounter from '../components/OnlineCounter';
 import { Game } from '../types/game';
 import { gamesData, getFeaturedGame, getOtherGames } from '../data/games';
 
@@ -67,7 +68,9 @@ const GamePlaza: React.FC = () => {
                 游戏广场
               </h1>
               
-              <div className="w-20"></div> {/* 占位符保持居中 */}
+              <div className="flex items-center">
+              <OnlineCounter className="bg-white/80 backdrop-blur-sm px-4 py-2 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow" />
+            </div>}
             </div>
           </div>
         </div>

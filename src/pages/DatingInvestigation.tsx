@@ -26,9 +26,11 @@ import {
   Code
 } from 'lucide-react';
 import { useAppStore } from '../stores/appStore';
+import { FileUpload } from '../components/FileUpload';
 
 interface DatingInvestigationData {
   // 基本信息
+  photo: File | null;
   name: string;
   gender: 'male' | 'female' | '';
   age: number | '';
@@ -78,6 +80,7 @@ const DatingInvestigation: React.FC = () => {
   const { addInvestigation } = useAppStore();
   
   const [formData, setFormData] = useState<DatingInvestigationData>({
+    photo: null,
     name: '',
     gender: '',
     age: '',
@@ -204,6 +207,21 @@ const DatingInvestigation: React.FC = () => {
     });
   };
 
+  const handlePhotoUpload = (file: File | null) => {
+    setFormData(prev => ({
+      ...prev,
+      photo: file
+    }));
+    
+    // 清除照片字段的错误
+    if (errors.photo) {
+      setErrors(prev => ({
+        ...prev,
+        photo: ''
+      }));
+    }
+  };
+
   // 兴趣爱好选项
   const hobbyOptions = [
     { value: 'music', label: '音乐', icon: Music },
@@ -244,6 +262,11 @@ const DatingInvestigation: React.FC = () => {
 
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
+
+    // 照片必填验证
+    if (!formData.photo) {
+      newErrors.photo = '请上传照片';
+    }
 
     // 必填字段验证
     if (!formData.name.trim()) {
@@ -345,6 +368,7 @@ const DatingInvestigation: React.FC = () => {
         targetOccupation: formData.occupation,
         investigationType: 'dating' as const,
         additionalInfo: {
+          photo: formData.photo,
           age: typeof formData.age === 'string' ? parseInt(formData.age) : formData.age || undefined,
           occupation: formData.occupation,
           education: formData.education,
@@ -388,6 +412,7 @@ const DatingInvestigation: React.FC = () => {
 
   const handleReset = () => {
     setFormData({
+      photo: null,
       name: '',
       gender: '',
       age: '',
@@ -452,6 +477,27 @@ const DatingInvestigation: React.FC = () => {
               <span className="ml-2 text-sm text-gray-500">（带*为必填项）</span>
             </div>
             
+            {/* 照片上传 */}
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                个人照片 <span className="text-red-500">*</span>
+              </label>
+              <FileUpload
+                onFileSelect={handlePhotoUpload}
+                accept="image/*"
+                maxSize={5 * 1024 * 1024} // 5MB
+                preview={true}
+                value={formData.photo}
+                className={errors.photo ? 'border-red-500' : ''}
+              />
+              {errors.photo && (
+                <p className="mt-1 text-sm text-red-600">{errors.photo}</p>
+              )}
+              <p className="mt-1 text-sm text-gray-500">
+                请上传清晰的个人照片，支持JPG、PNG格式，文件大小不超过5MB
+              </p>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* 姓名 */}
               <div>
